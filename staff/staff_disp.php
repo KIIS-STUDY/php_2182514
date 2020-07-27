@@ -38,7 +38,7 @@ catch(Exception $e)
 
 ?>
 
-スタッフ削除<br/>
+スタッフ情報参照<br/>
 <br/>
 スタッフコード<br/>
 <?php print $staff_code;?>
@@ -46,12 +46,9 @@ catch(Exception $e)
 スタッフ名<br/>
 <?php print $staff_name;?>
 <br/>
-このスタッフを削除してよろしいですか？<br/>
 <br/>
-<form method="post" action="staff_delete_done.php">
-<input type="hidden" name="code" value="<?php print $staff_code;?>">
+<form>
     <input type="button" onclick="histry.back()" value="戻る">
-    <input type="submit" value="OK">
 </form>
 
 </body>

@@ -17,15 +17,15 @@ try
     $dbh=new PDO($dsn,$user,$password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     
-    $sql='SELECT code, name FROM mst_staff WHERE 1';
+    $sql='SELECT code, name, price FROM mst_product WHERE 1';
     $stmt=$dbh->prepare($sql);
     $stmt->execute();
 
     $dbh=null;
 
-    print'スタッフ一覧<br/>';
+    print'商品一覧<br/>';
 
-    print '<form method="post" action="staff_branch.php">';
+    print '<form method="post" action="pro_branch.php">';
     while(true)
     {
         $rec=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,9 +33,10 @@ try
     {
         break;
     }
-    print'<input type="radio" name="staffcode" value="'.$rec['code'].'">';
-    print $rec['name'];
-    print '<br/>';
+    print'<input type="radio" name="procode" value="'.$rec['code'].'">';
+    print $rec['name'].'---';
+    print $rec['price'].'円';
+    print '<br />';
     } 
 print'<input type="submit"  name="disp" value="参照">';  
 print'<input type="submit"  name="add" value="追加">';  
@@ -53,6 +54,6 @@ catch(Exception$e)
 ?>
 
 <br />
-<a href="../staff_login_top.php">トップメニュー </a><br />
+<a href="../staff_login/staff_top.php">トップメニューへ </a><br />
 
 </body>
