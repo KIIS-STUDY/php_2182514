@@ -2,11 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>ろくまる農園</title>
+        <title> くるまる農園</title>
     </head>
 <body>
 
-スタッフが選択されていません。<br />
-<a href="staff_list.php">戻る</a>
+スタッフが選択されていません。<br/>
+<a href="staff_list.php"> 戻る </a>
 
 </body>
+

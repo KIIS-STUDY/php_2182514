@@ -1,37 +1,43 @@
-<?php
+﻿<? php
 
 function gengo($seireki)
-        {
-            if(1868<=$seireki && $seireki<=1911)
-            {
-                $gengo='明治';
-            }
+{
+    if(1868 <= $seireki && $seireki <= 1911)
+    {
+        $gengo ='明治';
+    }
 
-            if(1912<=$seireki && $seireki<=1925)
-            {
-                $gengo='大正';
-            }
+    if(1912 <= $seireki && $seireki <= 1925)
+    {
+        $gengo ='大正';
+    }
 
-            if(1926<=$seireki && $seireki<=1988)
-            {
-                $gengo='昭和';
-            }
+    if(1926 <= $seireki && $seireki <= 1988)
+    {
+        $gengo ='昭和';
+    }
 
-            if(1989<=$seireki)
-            {
-                $gengo='平成';
-            }
+    if(1989 <= $seireki && $seireki <= 2018)
+    {
+        $gengo ='平成';
+    }
 
-            return($gengo);
-        }
+    if(2019 <= $seireki)
+    {
+        $gengo ='令和';
+    }
+    return($gengo);
 
 function sanitize($before)
 {
     foreach($before as $key=>$value)
     {
-        $after[$key] = htmlspecialchars($value,ENT_QUOTES,'UTF-8');
+        $after[$key] = htmlspecialchars($value,ENT_QUOTES,'UTF_8');
     }
     return $after;
 }
+
+}
+
 
 ?>

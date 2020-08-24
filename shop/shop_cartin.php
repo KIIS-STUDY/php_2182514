@@ -1,90 +1,70 @@
-<?php
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['member_login'])==false)
+﻿<?php
+
+session_start ();
+session_regenerate_id (true);
+
+if (isset($_SESSION['member_login']) == false)
 {
-    print'ようこそゲスト様';
-    print'<a href="member_login.html">会員ログイン</a><br />';
-    print'<br />
+  print 'ようこそゲスト様　';
+  print '<a href="member_login.html">会員ログイン</a><br />';
+  print '<br />';
 }
 else
 {
-    print'ようこそ';
-    print $_SESSION['member_name';
-    print'様 ';
-    print'<a href="member_logout.php">ログアウト</a><br />';
-    print'<br />';
+  print 'ようこそ';
+  print $_SESSION['member_name'];
+  print '様　';
+  print '<a href="member_logout.php">ログアウト</a><br />';
+  print '<br />';
 }
+
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>六丸農園</title>
+  <meta charset="UTF-8">
+  <title>くるまる農園</title>
 </head>
 <body>
 
 <?php
 
-try
-{
+try {
 
-$pro_code= $_GET['staffcode'];
+  $pro_code = $_GET['procode'];
 
-    $dsn='mysql:dbname=shop;host=localhost;charset=utf8';
-    $user='root';
-    $password='';
-    $dbh=new PDO($dsn,$user,$password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+  if (isset ($_SESSION['cart']) == true){
 
-    $sql='SELECT name,price,gazou FROM mst_product WHERE code=?';
-    $stmt=$dbh->prepare($sql);
-    $data[]=$pro_code;
-    $stmt->execute($data);
+    $cart = $_SESSION['cart'];
+    $kazu = $_SESSION['kazu'];
 
-    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-    $pro_name=$rec['name'];
-    $pro_price=$rec=['price']
-    $pro_gazou_name=$rec=['gazou'];
+    if (in_array ($pro_code, $cart) == true){
 
-    $dbh=null;
+      print 'その商品はすでにカートに入っています。<br />';
+      print '<a href="shop_list.php">商品一覧に戻る</a>';
+      exit();
+    }
+  }
+  $cart[] = $pro_code;
+  $kazu[] = 1;
+  $_SESSION['cart'] = $cart;
+  $_SESSION['kazu'] = $kazu;
 
-if($pro_gazou_name=='')
-{
-    $disp_gazzou='';
-}
-else
-{
-    $disp_gazou='<img src="../product/gazou/'.$pro_gazou_name.'">';
-}
-print'<a href="shop_cartin.php?procode='.$pro_code.'">カートに入れる</a><br /><br />';
 
-catch(Exception $e)
-{
-    print'ただいま障害により大変ご迷惑をおかけしております。';
-    exit();  
+
+} catch (Exception $e) {
+
+  print 'ただいま障害により大変ご迷惑をお掛けしております。';
+  print $e->getMessage ();
+	exit();
 }
 
-?>
+ ?>
 
-商品情報参照<br/>
-<br/>
-商品コード<br/>
-<?php print $pro_code;?>
-<br/>
-商品名<br/>
-<?php print $pro_name;?>
-<br/>
-価格<br />
-<?php print $pro_price;?>円
+ カートに追加しました。<br />
 <br />
-<br />
-<?php print $disp_gazou;?>
-<br />
-<form>
-    <input type="button" onclick="histry.back()" value="戻る">
-</form>
+<a href="shop_list.php">商品一覧に戻る</a>
 
 </body>
 </html>

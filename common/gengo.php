@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,6 +7,8 @@
 <body>
 
 <?php
+
+require_once('../common/common.php');
 
 $seireki= $_POST['seireki'];
 
